@@ -12,7 +12,9 @@ public class DeckScript : MonoBehaviour
         for (int i = 0; i < lootedCards; i++){
             CardStructure nextCard = new CardStructure();
             Enqueue(obj: nextCard.DealCard());
+            print(nextCard.cardType);
         }
+        
         print ("You looted "+ lootedCards + "cards.");
     }
      public void Enqueue(GameObject obj)

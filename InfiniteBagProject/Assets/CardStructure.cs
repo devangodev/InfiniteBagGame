@@ -5,33 +5,28 @@ using UnityEngine.UI;
 
 public class CardStructure : MonoBehaviour
 {
-    [SerializeField] GameObject targetObject;
-    [SerializeField] int cardType;
+    public GameObject targetObject;
+    public int cardType;
     public string text; // The string to draw
     public Color textColor; // The color of the text
     public int fontSize; // The size of the text
-    public Font font; // The font of the text
 
-    System.Random random = new System.Random();
 
     private Text textComponent;
 
     // Start is called before the first frame update
     void Start() 
     {
-        cardType = random.Next(1,3);
+    }
+    public void Awake() {
         textComponent = gameObject.AddComponent<Text>();
         textComponent.text = cardType.ToString();
-        textComponent.color = textColor;
-        textComponent.font = font;
-        textComponent.fontSize = fontSize;
-        
-        
-
+        textComponent.color = Color.black;
+        textComponent.fontSize = 100;
         textComponent.rectTransform.position = targetObject.transform.position;
-
     }
     public GameObject DealCard(){
+        cardType = Random.Range(1,3);
         return targetObject;
     }
 
