@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1187181546844639416}
   - component: {fileID: 1187181546844639415}
+  - component: {fileID: 6927214899983330232}
   m_Layer: 0
   m_Name: Deck
   m_TagString: Untagged
@@ -44,4 +45,28 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f3c183f604a2444d6bf5593480e684d8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  cards: {fileID: 0}
+  CardPrefab: {fileID: 0}
+  QueueGO: []
   lootedCards: 10
+  defaultPosition: {x: 0, y: 0}
+--- !u!114 &6927214899983330232
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1187181546844639414}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fd23ed7fd1a064841a276c7ee8ecf9c2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cardType: 0
+  text: 
+  textColor: {r: 0, g: 0, b: 0, a: 0}
+  fontSize: 0
+  weaponSprite: {fileID: 21300000, guid: dbffe69b91b9c498782750f4c7d5cc3c, type: 3}
+  shieldSprite: {fileID: 21300000, guid: b6184e8ca96294e978dcede3e78b7eec, type: 3}
+  healSprite: {fileID: 21300000, guid: f02fc6fa82bbb4562a5629aacdd7fbe0, type: 3}
+  textComponent: {fileID: 0}

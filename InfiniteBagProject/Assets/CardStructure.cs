@@ -5,30 +5,50 @@ using UnityEngine.UI;
 
 public class CardStructure : MonoBehaviour
 {
-    public GameObject targetObject;
     public int cardType;
-    public string text; // The string to draw
-    public Color textColor; // The color of the text
-    public int fontSize; // The size of the text
+    public Sprite weaponSprite;
+    public Sprite shieldSprite;
+    public Sprite healSprite;
+
+    
 
 
-    private Text textComponent;
+    //public TMPro.TMP_Text textComponent;
 
     // Start is called before the first frame update
+    
     void Start() 
     {
-    }
-    public void Awake() {
-        textComponent = gameObject.AddComponent<Text>();
-        textComponent.text = cardType.ToString();
+        
+        //textComponent = targetObject.AddComponent<TMPro.TMP_Text>();
+        cardType = Random.Range(1,4);
+        switch (cardType){
+            case 1:
+            GetComponent<SpriteRenderer>().sprite = weaponSprite;
+            break;
+
+            case 2:
+            GetComponent<SpriteRenderer>().sprite = shieldSprite;
+            break;
+
+            case 3:
+            GetComponent<SpriteRenderer>().sprite = healSprite;
+            break;
+
+            default:
+            break;
+        }
+        /*textComponent.text = cardType.ToString();
         textComponent.color = Color.black;
-        textComponent.fontSize = 100;
-        textComponent.rectTransform.position = targetObject.transform.position;
+        textComponent.fontSize = 10;*/
+        
+        
     }
-    public GameObject DealCard(){
-        cardType = Random.Range(1,3);
-        return targetObject;
+
+    public int GetCardType(){
+        return cardType;
     }
+
 
     // Update is called once per frame
     void Update()
