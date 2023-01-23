@@ -12,7 +12,6 @@ public class DeckScript : MonoBehaviour
     public List<GameObject> QueueGO;
     public GameObject[] cardsDeck;
     public int lootedCards = new int();
-    public Vector2 defaultPosition;
     private Vector2 fingerDown;
     private Vector2 fingerUp;
     public bool detectSwipeOnlyAfterRelease = false;
@@ -20,29 +19,25 @@ public class DeckScript : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        //Empties the card list and loots X cards, in this case 10.
         QueueGO.Clear();
         lootedCards = 10;
+        //The " cards " variable now refers to the existing GameObject named " Deck " from the editor
         cards = GameObject.Find("Deck");
-
-        for (int i = 0; i < lootedCards; i++){
-            //CardStructure nextCard = new CardStructure();
+        //Instantiates a card for each looted card and adds them all to the card deck
+        for (int i = 0; i < lootedCards; i++)
+        {
             GameObject currentCard = Instantiate(CardPrefab, cards.transform);
             QueueGO.Add(currentCard);
             print(currentCard.GetComponent<CardStructure>().cardType);
         }
 
-        print("You looted "+ lootedCards + "cards.");
-    }
-
-
-    public void Dequeue()
-    {
-
+        print("You looted " + lootedCards + "cards.");
     }
 
     public void PeekCard()
     {
-        
+
         cardsDeck = QueueGO.ToArray();
         GameObject topObject = null;
         float maxY = float.MinValue;
@@ -66,16 +61,12 @@ public class DeckScript : MonoBehaviour
             Debug.Log("Top Object: " + topObject.name);
             topObject = Instantiate(CardPrefab, cards.transform);
         }
-        
+
     }
 
-    public int Count()
+    //Function to discard the card on top of the deck
+    public void Discard()
     {
-        return QueueGO.Count;
-    }
-
-    public void Discard(){
-       
         cardsDeck = QueueGO.ToArray();
         GameObject topObject = null;
         float maxY = float.MinValue;
@@ -97,8 +88,11 @@ public class DeckScript : MonoBehaviour
         if (topObject != null)
         {
             Debug.Log("Top Object: " + topObject.name);
-            for (int i = 0; i < QueueGO.Count; i++){
-                if (QueueGO[i] == topObject) {
+            //Remove logic not working atm, it's a WIP
+            for (int i = 0; i < QueueGO.Count; i++)
+            {
+                if (QueueGO[i] == topObject)
+                {
                     QueueGO.RemoveAt(i);
                 }
             }
@@ -107,7 +101,7 @@ public class DeckScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-         foreach (Touch touch in Input.touches)
+        foreach (Touch touch in Input.touches)
         {
             if (touch.phase == TouchPhase.Began)
             {
@@ -133,7 +127,7 @@ public class DeckScript : MonoBehaviour
             }
         }
     }
-     void checkSwipe()
+    void checkSwipe()
     {
         // Check if swipe distance is greater than threshold
         if (Mathf.Abs(fingerDown.x - fingerUp.x) > SWIPE_THRESHOLD)
@@ -143,8 +137,8 @@ public class DeckScript : MonoBehaviour
             {
                 Debug.Log("Swipe Left");
                 Discard();
-    
-                }
+
+            }
             // Swipe right
             else if (fingerDown.x - fingerUp.x < 0)
             {

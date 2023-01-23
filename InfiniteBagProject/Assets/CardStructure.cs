@@ -20,7 +20,7 @@ public class CardStructure : MonoBehaviour
     void Start() 
     {
         
-        //textComponent = targetObject.AddComponent<TMPro.TMP_Text>();
+        //Creates a card of a random type and assigns a sprite according to it
         cardType = Random.Range(1,4);
         switch (cardType){
             case 1:
@@ -38,16 +38,11 @@ public class CardStructure : MonoBehaviour
             default:
             break;
         }
-        /*textComponent.text = cardType.ToString();
-        textComponent.color = Color.black;
-        textComponent.fontSize = 10;*/
+
         
         
     }
 
-    public int GetCardType(){
-        return cardType;
-    }
 
 
     // Update is called once per frame
